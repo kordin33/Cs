@@ -2857,103 +2857,32 @@ body.landing #page-wrapper {
     }
 }
 /* ============================================
-   ULEPSZONA SEKCJA SPOTLIGHT
-   Dodaj do main.css
+   SPOTLIGHT Z GRADIENT OVERLAY + LIQUID GLASS
    ============================================ */
 
-/* TRANSPARENTNOŚĆ dla sekcji spotlight */
+/* Podstawowy spotlight - zachowaj delikatną przezroczystość */
 .spotlight {
     background: linear-gradient(to bottom,
-        transparent 0%,
-        rgba(0, 0, 0, 0.2) 10%,
-        rgba(0, 0, 0, 0.3) 50%,
-        rgba(0, 0, 0, 0.2) 90%,
-        transparent 100%
+       
+        rgba(0, 0, 0, 0.3) 0%,        /* Góra - delikatnie ciemniej */
+        rgba(0, 0, 0, 0.822) 15%,       /* Wejście */
+        rgba(0, 0, 0, 0.842) 40%,       /* Środek - jak wcześniej */
+        rgb(0, 0, 0) 60%,       /* Środek - stabilny */
+        rgba(3, 3, 3, 0.911) 85%,       /* Wyjście */
+        rgba(0, 0, 0, 0.302) 100% 
     ) !important;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(5px);
     position: relative;
 }
 
-/* ROZMIARY OBRAZÓW - większe rolety, mniejsze pozostałe */
-
-/* Rolety - WIĘKSZE (60% szerokości) */
-.spotlight.style1 .image {
-    width: 20% !important;
-}
-
-.spotlight.style1 .image img {
-    width: 80%;
-    height: auto;
-    object-fit: cover;
+/* GRADIENT OVERLAY NA ZDJĘCIACH - dopasowany do palety */
+.spotlight .image {
+    width: 35% !important;
+    position: relative;
+    overflow: hidden;
     border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
-
-/* Pozostałe sekcje - MNIEJSZE (40% szerokości) */
-.spotlight.style2 .image,
-.spotlight.style3 .image,
-.spotlight.style4 .image,
-.spotlight.style5 .image {
-    width: 40% !important;
-}
-
-.spotlight.style2 .image img,
-.spotlight.style3 .image img,
-.spotlight.style4 .image img,
-.spotlight.style5 .image img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-}
-
-/* RESPONSYWNOŚĆ */
-@media screen and (max-width: 980px) {
-    /* Na tablecie - wszystkie obrazy 100% */
-    .spotlight .image {
-        width: 100% !important;
-        margin-bottom: 20px;
-    }
-}
-
-@media screen and (max-width: 736px) {
-    /* Na mobile - zachowaj proporcje ale mniejsze */
-    .spotlight.style1 .image {
-        width: 100% !important;
-    }
-    
-    .spotlight.style2 .image,
-    .spotlight.style3 .image,
-    .spotlight.style4 .image,
-    .spotlight.style5 .image {
-        width: 100% !important;
-    }
-}
-
-/* ============================================
-   DODATKOWE ULEPSZENIA WIZUALNE
-   ============================================ */
-
-/* Hover effects dla obrazów */
-.spotlight .image img {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.spotlight .image:hover img {
-    transform: scale(1.02);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-}
-
-/* Lepszy tekst - większy kontrast */
-.spotlight .content h2,
-.spotlight .content h3,
-.spotlight .content p {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
-    color: white !important;
-}
-
-/* Gradient overlay na obrazach dla lepszego kontrastu */
+/* Overlay dokładnie taki sam jak tło sekcji + transparentność na końcach */
 .spotlight .image::before {
     content: '';
     position: absolute;
@@ -2961,19 +2890,491 @@ body.landing #page-wrapper {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, 
-        rgba(0,0,0,0.1) 0%, 
-        transparent 50%, 
-        rgba(0,0,0,0.1) 100%
-    );
+    background: linear-gradient(to bottom,
+       rgba(255, 255, 255, 0) 0%,        /* Góra - delikatnie ciemniej */
+        rgba(0, 0, 0, 0.74) 15%,       /* Wejście */
+        rgba(0, 0, 0, 0) 40%,       /* Środek - jak wcześniej */
+        rgba(0, 0, 0, 0) 60%,       /* Środek - stabilny */
+        rgba(3, 3, 3, 0) 85%,       /* Wyjście */
+        rgba(0, 0, 0, 0.758) 100%      /* Dół - bardziej przezroczyste */
+    )!important;
+    z-index: 1000;
     border-radius: 10px;
-    pointer-events: none;
 }
 
-/* Spotlight content - lepsze wyśrodkowanie */
-.spotlight .content {
+/* Dodatkowy overlay dla spójności kolorystycznej - bardzo subtelny */
+.spotlight .image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        transparent 0%,
+        rgba(0, 0, 0, 0.05) 25%,
+        transparent 50%,
+        rgba(0, 0, 0, 0.05) 75%,
+        transparent 100%
+    );
+    z-index: 2;
+    border-radius: 10px;
+}
+
+
+.spotlight .image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 999;
+}
+
+.spotlight .image:hover img {
+    transform: scale(1.02);
+}
+
+/* ============================================
+   LIQUID GLASS EFFECT - MODERN GLASSMORPHISM
+   ============================================ */
+
+.liquid-glass {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(255, 255, 255, 0.1) 100%
+    );
+    backdrop-filter: blur(15px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.liquid-glass::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 100%
+    );
+    animation: liquidShine 3s infinite;
+}
+
+@keyframes liquidShine {
+    0% { left: -100%; }
+    50% { left: 100%; }
+    100% { left: 100%; }
+}
+
+/* Liquid glass dla przycisków */
+.button.liquid {
+    background: linear-gradient(135deg, 
+        rgba(226, 149, 120, 0.8) 0%,
+        rgba(226, 149, 120, 0.6) 100%
+    );
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.button.liquid:hover {
+    background: linear-gradient(135deg, 
+        rgba(226, 149, 120, 0.9) 0%,
+        rgba(226, 149, 120, 0.7) 100%
+    );
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(226, 149, 120, 0.3);
+}
+
+/* ============================================
+   SŁOWA KLUCZOWE - KOLOROWE AKCENTY
+   ============================================ */
+
+/* Podświetlenie słów kluczowych */
+.highlight-blue {
+    color: #cbd3d4 !important;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.highlight-orange {
+    color: #E29578 !important;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.highlight-green {
+    color: #dae0d6 !important;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.highlight-white {
+    color: #ffffff !important;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Gradient text effect */
+.gradient-text {
+    background: linear-gradient(135deg, #4A90A4 0%, #E29578 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    text-shadow: none;
+}
+
+/* ============================================
+   USUNIĘCIE CTA Z SEKCJI
+   ============================================ */
+
+/* Ukryj wszystkie przyciski w sekcjach spotlight */
+.spotlight .actions {
+    display: none !important;
+}
+
+/* ============================================
+   RESPONSYWNOŚĆ
+   ============================================ */
+
+@media screen and (max-width: 980px) {
+    .spotlight .image {
+        width: 100% !important;
+        margin-bottom: 15px;
+    }
+    
+    .spotlight {
+        background: rgba(0, 0, 0, 0.6) !important;
+    }
+    
+    /* Prostsze overlaye na mobile */
+    .spotlight .image::before {
+        opacity: 0.7;
+        mix-blend-mode: normal;
+    }
+}
+
+@media screen and (max-width: 736px) {
+    .spotlight {
+        background: rgba(0, 0, 0, 0.7) !important;
+        backdrop-filter: none;
+    }
+    
+    /* Wyłącz liquid glass na mobile */
+    .liquid-glass {
+        backdrop-filter: none;
+        background: rgba(0, 0, 0, 0.8);
+    }
+}
+
+/* ============================================
+   DODATKOWE WARIANTY LIQUID GLASS
+   ============================================ */
+
+/* Liquid glass - wariant niebieski */
+.liquid-glass.blue {
+    background: linear-gradient(135deg, 
+        rgba(74, 144, 164, 0.2) 0%,
+        rgba(74, 144, 164, 0.1) 100%
+    );
+    border: 1px solid rgba(74, 144, 164, 0.3);
+}
+
+/* Liquid glass - wariant pomarańczowy */
+.liquid-glass.orange {
+    background: linear-gradient(135deg, 
+        rgba(226, 149, 120, 0.2) 0%,
+        rgba(226, 149, 120, 0.1) 100%
+    );
+    border: 1px solid rgba(226, 149, 120, 0.3);
+}
+
+/* Liquid glass - wariant zielony */
+.liquid-glass.green {
+    background: linear-gradient(135deg, 
+        rgba(45, 80, 22, 0.2) 0%,
+        rgba(45, 80, 22, 0.1) 100%
+    );
+    border: 1px solid rgba(45, 80, 22, 0.3);
+}
+
+/* ============================================
+   LIQUID GLASS DLA KONKRETNYCH LITER/SŁÓW
+   ============================================ */
+
+/* ============================================
+   LIQUID GLASS NA SAMYCH LITERACH - bez tła
+   ============================================ */
+
+/* Liquid glass text effect - TYLKO na literach */
+.text-liquid-glass {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(255, 255, 255, 0.4) 30%,
+        rgba(255, 255, 255, 0.6) 70%,
+        rgba(255, 255, 255, 0.8) 100%
+    );
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    text-fill-color: transparent !important;
+    font-weight: 700 !important;
+    display: inline !important;
+    position: relative;
+    text-shadow: none !important;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+}
+
+/* Shine effect na literach */
+.text-liquid-glass::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%,
+        rgba(255, 255, 255, 0.8) 50%,
+        transparent 100%
+    );
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    animation: letterShine 3s infinite;
+    z-index: 1;
+}
+
+@keyframes letterShine {
+    0% { left: -100%; }
+    50% { left: 100%; }
+    100% { left: 100%; }
+}
+
+/* Warianty kolorowe - TYLKO na literach */
+.text-liquid-glass.blue {
+    background: linear-gradient(135deg, 
+        #4A90A4 0%,
+        #6BB6CC 30%,
+        #4A90A4 70%,
+        #2E5A66 100%
+    );
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    filter: drop-shadow(0 0 8px rgba(74, 144, 164, 0.5));
+}
+
+.text-liquid-glass.orange {
+    background: linear-gradient(135deg, 
+        #E29578 0%,
+        #F2B89A 30%,
+        #E29578 70%,
+        #CC7A5C 100%
+    );
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    filter: drop-shadow(0 0 8px rgba(226, 149, 120, 0.5));
+}
+
+.text-liquid-glass.green {
+    background: linear-gradient(135deg, 
+        #2D5016 0%,
+        #4A7B2A 30%,
+        #2D5016 70%,
+        #1A2F0D 100%
+    );
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    filter: drop-shadow(0 0 8px rgba(45, 80, 22, 0.5));
+}
+
+/* Fallback dla starszych przeglądarek */
+@supports not (-webkit-background-clip: text) {
+    .text-liquid-glass {
+        color: #ffffff !important;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5) !important;
+    }
+    
+    .text-liquid-glass.blue {
+        color: #4A90A4 !important;
+        text-shadow: 0 0 10px rgba(74, 144, 164, 0.5) !important;
+    }
+    
+    .text-liquid-glass.orange {
+        color: #E29578 !important;
+        text-shadow: 0 0 10px rgba(226, 149, 120, 0.5) !important;
+    }
+    
+    .text-liquid-glass.green {
+        color: #2D5016 !important;
+        text-shadow: 0 0 10px rgba(45, 80, 22, 0.5) !important;
+    }
+}
+
+/* ============================================
+   BUTTON LIQUID GLASS - bez konfliktów
+   ============================================ */
+
+/* Resetuj domyślne style button i dodaj liquid glass */
+button.liquid-glass-btn,
+.button.liquid-glass-btn,
+a.button.liquid-glass-btn {
+    /* Reset podstawowych stylów */
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    
+    /* Liquid glass effect */
+    background: linear-gradient(135deg, 
+        rgba(102, 100, 100, 0.219) 0%,
+        rgba(143, 88, 67, 0.582) 100%
+    ) !important;
+    backdrop-filter: blur(10px) saturate(150%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 15px !important;
+    padding: 15px 30px !important;
+    color: white !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+    font-weight: 600 !important;
+    position: relative !important;
+    overflow: hidden !important;
+    transition: all 0.3s ease !important;
+    display: inline-block !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    
+    box-shadow: 
+        0 8px 25px rgba(226, 149, 120, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+button.liquid-glass-btn::before,
+.button.liquid-glass-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent 100%
+    );
+    animation: buttonShine 3s infinite;
+    z-index: 1;
+}
+
+@keyframes buttonShine {
+    0% { left: -100%; }
+    50% { left: 100%; }
+    100% { left: 100%; }
+}
+
+button.liquid-glass-btn:hover,
+.button.liquid-glass-btn:hover {
+    background: linear-gradient(135deg, 
+        rgba(83, 78, 77, 0.9) 0%,
+        rgba(87, 82, 81, 0.7) 100%
+    ) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+/* ============================================
+   POP-UP LIQUID GLASS
+   ============================================ */
+
+/* Overlay tła dla pop-up */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.popup-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Pop-up container z liquid glass */
+.popup-liquid-glass {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(255, 255, 255, 0.15) 100%
+    );
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
     padding: 40px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transform: scale(0.8) translateY(50px);
+    transition: all 0.3s ease;
+}
+
+.popup-overlay.active .popup-liquid-glass {
+    transform: scale(1) translateY(0);
+}
+
+/* Przycisk zamknij */
+.popup-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 18px;
+    backdrop-filter: blur(10px);
+}
+
+.popup-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
 }

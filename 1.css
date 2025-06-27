@@ -1,0 +1,142 @@
+/* ============================================
+   ULEPSZONA SEKCJA SPOTLIGHT - DELIKATNA PRZEZROCZYSTOŚĆ
+   Dodaj do main.css
+   ============================================ */
+
+/* DELIKATNA PRZEZROCZYSTOŚĆ - powrót do subtelnego czarnego gradientu */
+.spotlight {
+    background: linear-gradient(to bottom,
+        rgba(0, 0, 0, 0.3) 0%,        /* Góra - delikatnie ciemniej */
+        rgba(0, 0, 0, 0.822) 15%,       /* Wejście */
+        rgba(0, 0, 0, 0.842) 40%,       /* Środek - jak wcześniej */
+        rgb(0, 0, 0) 60%,       /* Środek - stabilny */
+        rgba(3, 3, 3, 0.911) 85%,       /* Wyjście */
+        rgba(0, 0, 0, 0.329) 100%       /* Dół - delikatnie ciemniej */
+    ) !important;
+    backdrop-filter: blur(4px);
+    position: relative;
+}
+
+/* ROZMIARY OBRAZÓW - wszystkie mniejsze i jednakowe */
+
+/* WSZYSTKIE zdjęcia - 35% szerokości (mniejsze niż wcześniej) */
+.spotlight .image {
+    width: 35% !important;
+}
+
+.spotlight .image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Opcjonalnie - jeszcze mniejsze 30% */
+/*
+.spotlight .image {
+    width: 30% !important;
+}
+*/
+
+/* RESPONSYWNOŚĆ */
+@media screen and (max-width: 980px) {
+    /* Na tablecie - obrazy 100% ale z mniejszym marginesem */
+    .spotlight .image {
+        width: 100% !important;
+        margin-bottom: 15px;
+    }
+    
+    /* Trochę mocniejsze tło na mobile dla czytelności */
+    .spotlight {
+        background: rgba(0, 0, 0, 0.6) !important;
+    }
+}
+
+@media screen and (max-width: 736px) {
+    .spotlight .image {
+        width: 100% !important;
+    }
+    
+    /* Mocniejsze tło na małych ekranach */
+    .spotlight {
+        background: rgba(0, 0, 0, 0.7) !important;
+        backdrop-filter: none;
+    }
+}
+
+/* ============================================
+   OPCJE ROZMIARU OBRAZÓW - wybierz jedną
+   ============================================ */
+
+/* OPCJA A - Bardzo małe zdjęcia (25%) */
+/*
+.spotlight .image {
+    width: 25% !important;
+}
+*/
+
+/* OPCJA B - Małe zdjęcia (30%) */
+/*
+.spotlight .image {
+    width: 30% !important;
+}
+*/
+
+/* OPCJA C - Średnie małe (35%) - DOMYŚLNA */
+/* Już ustawiona powyżej */
+
+/* OPCJA D - Jeszcze większy kontrast między tekstem a obrazem */
+/*
+.spotlight .content {
+    width: 70% !important;
+    padding: 50px !important;
+}
+
+.spotlight .image {
+    width: 30% !important;
+}
+*/
+
+/* Hover effects dla obrazów */
+.spotlight .image img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.spotlight .image:hover img {
+    transform: scale(1.02);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Lepszy tekst - większy kontrast */
+.spotlight .content h2,
+.spotlight .content h3,
+.spotlight .content p {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+    color: white !important;
+}
+
+/* Gradient overlay na obrazach dla lepszego kontrastu */
+.spotlight .image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        rgba(0,0,0,0.1) 0%, 
+        transparent 50%, 
+        rgba(0,0,0,0.1) 100%
+    );
+    border-radius: 10px;
+    pointer-events: none;
+}
+
+/* Spotlight content - lepsze wyśrodkowanie */
+.spotlight .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+}
