@@ -2868,14 +2868,14 @@ body.landing #page-wrapper {
 .spotlight {
     background: linear-gradient(to bottom,
        
-        rgba(0, 0, 0, 0.3) 0%,        /* Góra - delikatnie ciemniej */
+        rgba(0, 0, 0, 0.116) 0%,        /* Góra - delikatnie ciemniej */
         rgba(0, 0, 0, 0.822) 15%,       /* Wejście */
         rgba(0, 0, 0, 0.842) 40%,       /* Środek - jak wcześniej */
         rgb(0, 0, 0) 60%,       /* Środek - stabilny */
         rgba(3, 3, 3, 0.911) 85%,       /* Wyjście */
-        rgba(0, 0, 0, 0.302) 100% 
+        rgba(0, 0, 0, 0.168) 100% 
     ) !important;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(4px);
     position: relative;
 }
 
