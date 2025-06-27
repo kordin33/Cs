@@ -22,6 +22,8 @@
   "homepage": "https://github.com/kordin33/Cs#readme",
   "devDependencies": {
     "vite": "^7.0.0"
+  },
+  "dependencies": {
+    "glob": "^11.0.3"
   }
 }
-

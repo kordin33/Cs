@@ -1,32 +1,28 @@
 import { defineConfig } from 'vite';
+import { resolve } from 'path';
+import { glob } from 'glob';
+
+// Find all HTML files in the root directory
+const htmlFiles = glob.sync('*.html');
+
+const input = htmlFiles.reduce((acc, file) => {
+  const name = file.replace('.html', '');
+  acc[name] = resolve(__dirname, file);
+  return acc;
+}, {});
 
 export default defineConfig({
-  // your index.html lives at project root
   root: '.',
-
-  // where to copy “public” static assets into dist/
   publicDir: 'public',
-
-  // if you serve from non-root path, adjust this; otherwise "/" is fine
   base: '/',
-
   build: {
-    // output folder
     outDir: 'dist',
-
-    // clear dist/ before each build
     emptyOutDir: true,
-
-    // ensure index.html is the entry point
     rollupOptions: {
-      input: 'index.html'
-    }
+      input,
+    },
   },
-
   server: {
-    // when you run `npm run dev`, open http://localhost:5173/index.html
-    open: '/index.html'
-  }
+    open: '/index.html',
+  },
 });
-
-

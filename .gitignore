@@ -27,5 +27,5 @@ yarn-error.log*
 Thumbs.db
 
 # Media files - large files should not be in git
-*.mp4
+
 *.mov
