@@ -179,14 +179,17 @@
 		$('#contact-popup').fadeIn();
 	}, 45000); // 45 seconds
 
-	$('.close-button').on('click', function() {
-		$('#contact-popup').fadeOut();
-	});
+	// Close button and outside click handling
+	$(document).on('click', function(e) {
+		var popup = $('#contact-popup');
+		var closeButton = $('.close-button');
 
-	// Close popup when clicking outside of the content
-	$('#contact-popup').on('click', function(e) {
-		if (e.target === this) { // 'this' refers to #contact-popup
-			$(this).fadeOut();
+		// If the popup is visible
+		if (popup.is(':visible')) {
+			// If the click is on the close button or outside the popup content
+			if ($(e.target).is(closeButton) || !$(e.target).closest('.popup-content').length) {
+				popup.fadeOut();
+			}
 		}
 	});
 
