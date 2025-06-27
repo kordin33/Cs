@@ -174,6 +174,22 @@
 		}
 	});
 
+	// Popup logic
+	setTimeout(function() {
+		$('#contact-popup').fadeIn();
+	}, 45000); // 45 seconds
+
+	$('.close-button').on('click', function() {
+		$('#contact-popup').fadeOut();
+	});
+
+	// Close popup when clicking outside of the content
+	$('#contact-popup').on('click', function(e) {
+		if (e.target === this) { // 'this' refers to #contact-popup
+			$(this).fadeOut();
+		}
+	});
+
 })(jQuery);
 
 // ============================================
