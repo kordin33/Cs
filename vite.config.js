@@ -1,12 +1,32 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  root: './',
+  // your index.html lives at project root
+  root: '.',
+
+  // where to copy “public” static assets into dist/
+  publicDir: 'public',
+
+  // if you serve from non-root path, adjust this; otherwise "/" is fine
+  base: '/',
+
   build: {
+    // output folder
     outDir: 'dist',
+
+    // clear dist/ before each build
+    emptyOutDir: true,
+
+    // ensure index.html is the entry point
+    rollupOptions: {
+      input: 'index.html'
+    }
   },
-  publicDir: 'assets', // Serve static assets from the 'assets' directory
+
   server: {
-    open: '/index.html', // Open index.html by default
-  },
+    // when you run `npm run dev`, open http://localhost:5173/index.html
+    open: '/index.html'
+  }
 });
+
+
