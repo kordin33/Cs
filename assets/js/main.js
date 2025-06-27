@@ -80,4 +80,110 @@
 
 		}
 
+	// ============================================
+	// BACKGROUND VIDEO EFFECTS - BauGreen
+	// ============================================
+
+	// Background Video Smooth Effects
+	$window.on('load', function() {
+		var backgroundVideo = document.getElementById('bg-video');
+		
+		if (backgroundVideo) {
+			
+			// SLOW MOTION - ustaw prędkość odtwarzania
+			backgroundVideo.playbackRate = 0.8; // 0.5 = połowa prędkości
+			
+			// Upewnij się że video jest wyciszone i zapętlone
+			backgroundVideo.muted = true;
+			backgroundVideo.loop = true; // Włącz zwykły loop
+			
+			// Płynne uruchomienie po załadowaniu
+			backgroundVideo.addEventListener('canplaythrough', function() {
+				backgroundVideo.play().catch(function(error) {
+					console.log('Autoplay zablokowany przez przeglądarkę');
+				});
+			});
+			
+			// INTERAKTYWNE ZMIANY PRĘDKOŚCI
+			$('.wrapper').on('mouseenter', function() {
+				if (!browser.mobile) {
+					backgroundVideo.playbackRate = 0.7; // Bardzo wolno
+				}
+			});
+			
+			$('.wrapper').on('mouseleave', function() {
+				if (!browser.mobile) {
+					backgroundVideo.playbackRate = 0.8; // Powrót do normalnego slow-mo
+				}
+			});
+		}
+	});
+
+	// ============================================
+	// DODATKOWE FUNKCJE VIDEO
+	// ============================================
+
+	// Funkcja do łatwej zmiany prędkości video
+	window.setVideoSpeed = function(speed) {
+		var video = document.getElementById('bg-video');
+		if (video && !browser.mobile) {
+			video.playbackRate = speed;
+		}
+	};
+
+	// Funkcja do włączania/wyłączania video
+	window.toggleBackgroundVideo = function() {
+		var video = document.getElementById('bg-video');
+		if (video) {
+			if (video.paused) {
+				video.play();
+			} else {
+				video.pause();
+			}
+		}
+	};
+
+	// Funkcja do zmiany przezroczystości video
+	window.setVideoOpacity = function(opacity) {
+		var video = document.getElementById('bg-video');
+		if (video) {
+			video.style.opacity = opacity;
+		}
+	};
+
+	// ============================================
+	// RESPONSIVE VIDEO HANDLING
+	// ============================================
+
+	// Wyłącz video na urządzeniach mobilnych dla wydajności
+	breakpoints.on('<=medium', function() {
+		var video = document.getElementById('bg-video'); // Twoje ID
+		if (video) {
+			video.pause();
+			video.style.display = 'none';
+		}
+	});
+
+	breakpoints.on('>medium', function() {
+		var video = document.getElementById('bg-video'); // Twoje ID
+		if (video) {
+			video.style.display = 'block';
+			video.play().catch(function(error) {
+				console.log('Nie można wznowić video');
+			});
+		}
+	});
+
 })(jQuery);
+
+// ============================================
+// KONSOLA DEBUG - użyj w przeglądarce
+// ============================================
+
+// Przykłady komend do wpisania w konsoli:
+// setVideoSpeed(0.25);  // Bardzo wolno
+// setVideoSpeed(0.5);   // Wolno (domyślne)
+// setVideoSpeed(1.0);   // Normalnie
+// toggleBackgroundVideo(); // Włącz/wyłącz
+// setVideoOpacity(0.5); // Zmień przezroczystość
+// togglePingPong();     // Włącz/wyłącz ping-pong effect

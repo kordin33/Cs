@@ -3995,6 +3995,23 @@ body.landing #page-wrapper video#bg-video {
 	object-fit: cover;
 	z-index: -2;
 	pointer-events: none;
+	animation: videoPlayback 5s infinite alternate ease-in-out;
+	
+}
+/* ANIMACJA KEYFRAMES dla efektu ping-pong */
+@keyframes videoPlayback {
+    0% {
+        transform: scale(1.0); /* Lekki zoom na początku */
+        filter: brightness(0.7) contrast(1.1) saturate(0.9);
+    }
+    50% {
+        transform: scale(1); /* Normalny rozmiar w środku */
+        filter: brightness(0.6) contrast(1.2) saturate(1);
+    }
+    100% {
+        transform: scale(1.0); /* Powrót do zoomu */
+        filter: brightness(0.7) contrast(1.1) saturate(0.9);
+    }
 }
 
 
@@ -4020,3 +4037,256 @@ body.landing #page-wrapper video#bg-video {
 	body.is-mobile.landing #footer {
 		background-color: #1d242a;
 	}
+	/* ============================================
+   ŁATWA PERSONALIZACJA KOLORÓW
+   Dodaj ten kod na sam koniec pliku main.css
+   ============================================ */
+
+/* KOLORY DO ZMIANY - zmień tutaj i automatycznie zmieni się na całej stronie */
+:root {
+    --primary-color: #343737;        /* Główny kolor (turkusowy) */
+    --secondary-color: #505393;      /* Drugi kolor (fioletowy) */
+    --accent-color: #131c15;         /* Kolor akcentu (czerwony) */
+    --dark-bg: #2e3842;              /* Ciemne tło */
+    --light-text: #ffffff;           /* Jasny tekst */
+    --overlay-dark: rgba(0,0,0,0.3); /* Ciemne nakładki */
+}
+
+/* ============================================
+   SEKCJA 1 - Turkusowa sekcja z ikonkami
+   ============================================ */
+
+/* Zmiana koloru tła pierwszej sekcji */
+.wrapper.style1 {
+    background-color: var(--primary-color) !important;
+    /* Jeśli chcesz inny kolor, zmień na np: #FF6B6B lub #4ECDC4 */
+}
+
+/* Ikony w pierwszej sekcji */
+.icon.style1 { color: #00ffcc !important; }  /* Pierwsza ikona - zmień na swój kolor */
+.icon.style2 { color: #00f0ff !important; }  /* Druga ikona */
+.icon.style3 { color: #76ddff !important; }  /* Trzecia ikona */
+
+/* ============================================
+   SEKCJA 3 - Fioletowa sekcja z features
+   ============================================ */
+
+/* Zmiana koloru tła trzeciej sekcji */
+.wrapper.style3 {
+    background-color: var(--secondary-color) !important;
+    /* Jeśli chcesz inny kolor, zmień na np: #6C5CE7 lub #A29BFE */
+}
+
+/* Kolory ikon w features (sekcja 3) */
+.features li:before {
+    color: #00ffcc !important; /* Kolor wszystkich ikon w features */
+}
+
+/* ============================================
+   SZYBKIE ZMIANY KOLORÓW
+   Odkomentuj (usuń //) te które chcesz zmienić
+   ============================================ */
+
+/* SEKCJA 1 - różne opcje kolorów */
+/*
+.wrapper.style1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important; }
+.wrapper.style1 { background-color: #FF6B6B !important; }
+.wrapper.style1 { background-color: #4ECDC4 !important; }
+.wrapper.style1 { background-color: #45B7D1 !important; }
+.wrapper.style1 { background-color: #96CEB4 !important; }
+*/
+
+/* SEKCJA 3 - różne opcje kolorów */
+/*
+.wrapper.style3 { background-color: #6C5CE7 !important; }
+.wrapper.style3 { background-color: #A29BFE !important; }
+.wrapper.style3 { background-color: #fd79a8 !important; }
+.wrapper.style3 { background-color: #00b894 !important; }
+.wrapper.style3 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important; }
+*/
+
+/* ============================================
+   DODATKOWE ULEPSZENIA
+   ============================================ */
+
+/* Lepsze gradient dla sekcji */
+.wrapper.style1 {
+    background: linear-gradient(135deg, #b2d1e9 0%, #b2dbd3 100%) !important;
+}
+
+.wrapper.style3 {
+    background: linear-gradient(135deg, #29819e 0%, #b3e4f5 100%) !important;
+}
+
+/* Animacje hover dla ikon */
+.icon.major {
+    transition: transform 0.3s ease, color 0.3s ease !important;
+}
+
+.icon.major:hover {
+    transform: rotate(-45deg) scale(1.1) !important;
+}
+
+/* Dodaj cienie dla lepszego efektu */
+.wrapper.style1, .wrapper.style3 {
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.1);
+}
+/* ============================================
+   PRZEZROCZYSTE SEKCJE Z FILMEM W TLE
+   Dodaj na koniec main.css
+   ============================================ */
+
+/* Film w tle całej strony */
+body.landing #page-wrapper {
+    position: relative;
+    background: none !important;
+}
+
+/* Video background dla całej strony */
+#background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1000;
+    opacity: 0.2; /* Lekko przyciemniony film */
+}
+
+/* ============================================
+   PRZEZROCZYSTE SEKCJE - RÓŻNE POZIOMY
+   ============================================ */
+
+/* Sekcja 1 - Lekka przezroczystość (80%) */
+.wrapper.style1 {
+    background: rgba(74, 144, 164, 0.1) !important;
+    backdrop-filter: blur(2px); /* Lekkie rozmycie dla efektu szkła */
+}
+
+/* Sekcja 3 - Średnia przezroczystość (75%) */
+.wrapper.style3 {
+    background: rgba(122, 134, 142, 0.9) !important;
+    backdrop-filter: blur(1px);
+}
+
+/* ============================================
+   WERSJE DO WYBORU - RÓŻNE EFEKTY
+   Odkomentuj (usuń /* i */
+
+/* OPCJA A - Bardzo przezroczyste (film mocno widoczny) */
+/*
+.wrapper.style1 {
+    background: rgba(74, 144, 164, 0.6) !important;
+    backdrop-filter: blur(1px);
+}
+
+.wrapper.style3 {
+    background: rgba(226, 149, 120, 0.6) !important;
+    backdrop-filter: blur(1px);
+}
+*/
+
+/* OPCJA B - Gradient z przezroczystością */
+/*
+.wrapper.style1 {
+    background: linear-gradient(135deg, 
+        rgba(74, 144, 164, 0.8) 0%, 
+        rgba(131, 197, 190, 0.7) 100%) !important;
+    backdrop-filter: blur(2px);
+}
+
+.wrapper.style3 {
+    background: linear-gradient(135deg, 
+        rgba(226, 149, 120, 0.8) 0%, 
+        rgba(0, 109, 119, 0.7) 100%) !important;
+    backdrop-filter: blur(2px);
+}
+*/
+
+/* OPCJA C - Efekt matowego szkła */
+/*
+.wrapper.style1 {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(10px) saturate(180%);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.wrapper.style3 {
+    background: rgba(0, 0, 0, 0.2) !important;
+    backdrop-filter: blur(10px) saturate(180%);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+*/
+
+/* ============================================
+   ULEPSZENIA DLA LEPSZEJ CZYTELNOŚCI
+   ============================================ */
+
+/* Teksty - dodaj cienie dla lepszej czytelności */
+.wrapper.style1 h2, .wrapper.style1 h3, .wrapper.style1 p,
+.wrapper.style3 h2, .wrapper.style3 h3, .wrapper.style3 p {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Ikony - dodaj tło dla lepszej widoczności */
+.icon.major {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Spotlight sekcje - lekka przezroczystość */
+.spotlight {
+    background: rgba(0, 0, 0, 0.3) !important;
+    backdrop-filter: blur(2px);
+}
+
+/* Features - półprzezroczyste tła */
+.features li {
+    background: rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: blur(1px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================
+   ANIMACJE I EFEKTY HOVER
+   ============================================ */
+
+/* Animacje przezroczystości przy hover */
+.wrapper.style1:hover {
+    background: rgba(92, 102, 120, 0.544) !important;
+    transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.wrapper.style3:hover {
+    background: rgba(92, 102, 120, 0.544) !important;
+    transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+/* Płynne przejścia */
+.wrapper.style1, .wrapper.style3 {
+    transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+/* ============================================
+   RESPONSYWNOŚĆ
+   ============================================ */
+
+/* Na mobilnych - mniej przezroczystości dla czytelności */
+@media screen and (max-width: 768px) {
+    .wrapper.style1 {
+        background: rgba(74, 144, 164, 0.9) !important;
+    }
+    
+    .wrapper.style3 {
+        background: rgba(50, 139, 234, 0.9) !important;
+    }
+    
+    /* Wyłącz film na bardzo małych ekranach */
+    #background-video {
+        display: none;
+    }
+}
