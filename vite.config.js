@@ -2,12 +2,11 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   root: './',
-  base: '/', // Ensure base path is correctly set
   build: {
     outDir: 'dist',
   },
-  publicDir: 'assets',
+  publicDir: 'assets', // Serve static assets from the 'assets' directory
   server: {
-    open: '/index.html',
+    open: '/index.html', // Open index.html by default
   },
 });

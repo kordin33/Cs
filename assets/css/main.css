@@ -3564,24 +3564,36 @@ input, select, textarea {
 /* Banner */
 
 	#banner {
+		display: -moz-flex;
+		display: -webkit-flex;
+		display: -ms-flex;
 		display: flex;
+		-moz-flex-direction: column;
+		-webkit-flex-direction: column;
+		-ms-flex-direction: column;
 		flex-direction: column;
+		-moz-justify-content: center;
+		-webkit-justify-content: center;
+		-ms-justify-content: center;
 		justify-content: center;
-		align-items: center; /* Center content horizontally */
 		cursor: default;
 		height: 100vh;
 		min-height: 35em;
 		overflow: hidden;
-		position: relative; /* Ensure children can be absolutely positioned relative to this */
+		position: relative;
 		text-align: center;
 	}
 
-		#banner .inner {
-			z-index: 1; /* Ensure content is above the video */
-			position: relative; /* Ensure content is positioned correctly */
-		}
-
 		#banner h2 {
+			-moz-transform: scale(1);
+			-webkit-transform: scale(1);
+			-ms-transform: scale(1);
+			transform: scale(1);
+			-moz-transition: -moz-transform 0.5s ease, opacity 0.5s ease;
+			-webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s ease;
+			-ms-transition: -ms-transform 0.5s ease, opacity 0.5s ease;
+			transition: transform 0.5s ease, opacity 0.5s ease;
+			display: inline-block;
 			font-size: 1.75em;
 			opacity: 1;
 			padding: 0.35em 1em;
@@ -3590,6 +3602,14 @@ input, select, textarea {
 		}
 
 			#banner h2:before, #banner h2:after {
+				-moz-transition: width 0.85s ease;
+				-webkit-transition: width 0.85s ease;
+				-ms-transition: width 0.85s ease;
+				transition: width 0.85s ease;
+				-moz-transition-delay: 0.25s;
+				-webkit-transition-delay: 0.25s;
+				-ms-transition-delay: 0.25s;
+				transition-delay: 0.25s;
 				background: #fff;
 				content: '';
 				display: block;
@@ -3618,6 +3638,18 @@ input, select, textarea {
 			}
 
 		#banner .more {
+			-moz-transition: -moz-transform 0.75s ease, opacity 0.75s ease;
+			-webkit-transition: -webkit-transform 0.75s ease, opacity 0.75s ease;
+			-ms-transition: -ms-transform 0.75s ease, opacity 0.75s ease;
+			transition: transform 0.75s ease, opacity 0.75s ease;
+			-moz-transition-delay: 3.5s;
+			-webkit-transition-delay: 3.5s;
+			-ms-transition-delay: 3.5s;
+			transition-delay: 3.5s;
+			-moz-transform: translateY(0);
+			-webkit-transform: translateY(0);
+			-ms-transform: translateY(0);
+			transform: translateY(0);
 			border: none;
 			bottom: 0;
 			color: inherit;
@@ -3652,6 +3684,15 @@ input, select, textarea {
 			}
 
 		#banner:after {
+			pointer-events: none;
+			-moz-transition: opacity 3s ease-in-out;
+			-webkit-transition: opacity 3s ease-in-out;
+			-ms-transition: opacity 3s ease-in-out;
+			transition: opacity 3s ease-in-out;
+			-moz-transition-delay: 1.25s;
+			-webkit-transition-delay: 1.25s;
+			-ms-transition-delay: 1.25s;
+			transition-delay: 1.25s;
 			content: '';
 			background: #2e3842;
 			display: block;
@@ -3707,11 +3748,6 @@ input, select, textarea {
 
 	body.is-preload #banner:after {
 		opacity: 1;
-	}
-
-	/* Ensure video is visible on landing page */
-	body.landing #banner:after {
-		opacity: 0 !important;
 	}
 
 /* CTA */
@@ -3778,10 +3814,10 @@ input, select, textarea {
 
 	#main > header {
 		padding: 12em 0 10em 0 ;
-		background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5));
-		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5));
-		background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5));
-		background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+		background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/banner.jpg");
+		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/banner.jpg");
+		background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/banner.jpg");
+		background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/banner.jpg");
 		background-attachment: fixed;
 		background-position: center center;
 		background-repeat: no-repeat;
@@ -3928,7 +3964,14 @@ input, select, textarea {
 /* Landing */
 
 	body.landing #page-wrapper {
-		background-image: "../images/banner.jpg"; /* Remove background image */
+		background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/banner.jpg");
+		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/banner.jpg");
+		background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/banner.jpg");
+		background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/banner.jpg");
+		background-attachment: fixed;
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: cover;
 		padding-top: 0;
 	}
 
@@ -3937,24 +3980,20 @@ input, select, textarea {
 	}
 
 	body.is-mobile.landing #page-wrapper {
-		background-image: none;
+		background: none;
 	}
 
 	body.is-mobile.landing #banner,
 	body.is-mobile.landing .wrapper.style4 {
-		background-image: none; /* Remove background image */
+		background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/banner.jpg");
+		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/banner.jpg");
+		background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/banner.jpg");
+		background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/banner.jpg");
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: cover;
 	}
 
 	body.is-mobile.landing #footer {
 		background-color: #1d242a;
-	}
-
-	#banner video {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		object-fit: cover; /* Ensures the video covers the entire area */
-		z-index: -100;
 	}
