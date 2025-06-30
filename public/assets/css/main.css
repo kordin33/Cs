@@ -110,15 +110,74 @@ body {
 	background: #4775a2;
 }
 
-body.is-preload *, body.is-preload *:before, body.is-preload *:after {
-	-moz-animation: none !important;
-	-webkit-animation: none !important;
-	-ms-animation: none !important;
-	animation: none !important;
-	-moz-transition: none !important;
-	-webkit-transition: none !important;
-	-ms-transition: none !important;
-	transition: none !important;
+/* ============================================
+   PRELOAD SCREEN - LIQUID GLASS LOADING
+   ============================================ */
+
+/* PRELOAD STATE - LIQUID GLASS BACKGROUND */
+body.is-preload {
+	background: linear-gradient(135deg, 
+        rgba(46, 56, 66, 0.9) 0%,
+        rgba(46, 56, 66, 0.8) 25%,
+        rgba(62, 72, 82, 0.9) 50%,
+        rgba(46, 56, 66, 0.8) 75%,
+        rgba(46, 56, 66, 0.9) 100%
+    ) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ANIMATED GRADIENT OVERLAY FOR LOADING */
+body.is-preload::before {
+	content: '';
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(45deg,
+		transparent 0%,
+		rgba(255, 255, 255, 0.05) 25%,
+		rgba(255, 255, 255, 0.1) 50%,
+		rgba(255, 255, 255, 0.05) 75%,
+		transparent 100%
+	);
+	background-size: 400% 400%;
+	animation: loadingGradient 3s ease-in-out infinite;
+	z-index: -1;
+}
+
+@keyframes loadingGradient {
+	0% { background-position: 0% 50%; }
+	50% { background-position: 100% 50%; }
+	100% { background-position: 0% 50%; }
+}
+
+/* FLOATING PARTICLES EFFECT */
+body.is-preload::after {
+	content: '';
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: 
+		radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.3), transparent),
+		radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.2), transparent),
+		radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.4), transparent),
+		radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.3), transparent),
+		radial-gradient(2px 2px at 160px 30px, rgba(255,255,255,0.2), transparent);
+	background-repeat: repeat;
+	background-size: 200px 200px;
+	animation: floatingParticles 20s linear infinite;
+	z-index: -1;
+	opacity: 0.6;
+}
+
+@keyframes floatingParticles {
+	0% { transform: translateY(0px) rotate(0deg); }
+	100% { transform: translateY(-200px) rotate(360deg); }
 }
 
 body, input, select, textarea {
@@ -948,28 +1007,34 @@ button:disabled,
 }
 
 /* ============================================
-   SPOTLIGHT FORCE GRADIENTS - HIGHEST PRIORITY
+   SPOTLIGHT IMPROVED GRADIENTS - TRANSPARENT EDGES → DARK CENTER
    ============================================ */
 
-/* BASE SPOTLIGHT - FORCE BACKGROUND */
+/* BASE SPOTLIGHT - BETTER GRADIENT */
 .spotlight {
 	background: linear-gradient(to bottom,
         transparent 0%,
-        rgba(0, 0, 0, 0.2) 20%,
-        rgba(0, 0, 0, 0.3) 80%,
+        rgba(0, 0, 0, 0.1) 15%,
+        rgba(0, 0, 0, 0.4) 30%,
+        rgba(0, 0, 0, 0.6) 50%,
+        rgba(0, 0, 0, 0.4) 70%,
+        rgba(0, 0, 0, 0.1) 85%,
         transparent 100%
     ) !important;
     backdrop-filter: blur(3px) !important;
     position: relative !important;
 }
 
-/* SPOTLIGHT PROGRESSIVE BACKGROUNDS - FORCE ALL */
+/* SPOTLIGHT PROGRESSIVE BACKGROUNDS - TRANSPARENT EDGES TO DARK CENTER */
 .spotlight:nth-child(1),
 .spotlight:first-of-type {
 	background: linear-gradient(to bottom,
         transparent 0%,
-        rgba(0, 0, 0, 0.1) 20%,
-        rgba(0, 0, 0, 0.2) 80%,
+        rgba(0, 0, 0, 0.05) 15%,
+        rgba(0, 0, 0, 0.25) 30%,
+        rgba(0, 0, 0, 0.4) 50%,
+        rgba(0, 0, 0, 0.25) 70%,
+        rgba(0, 0, 0, 0.05) 85%,
         transparent 100%
     ) !important;
     backdrop-filter: blur(2px) !important;
@@ -979,8 +1044,11 @@ button:disabled,
 .spotlight:nth-of-type(2) {
 	background: linear-gradient(to bottom,
         transparent 0%,
-        rgba(0, 0, 0, 0.15) 20%,
-        rgba(0, 0, 0, 0.25) 80%,
+        rgba(0, 0, 0, 0.1) 15%,
+        rgba(0, 0, 0, 0.3) 30%,
+        rgba(0, 0, 0, 0.5) 50%,
+        rgba(0, 0, 0, 0.3) 70%,
+        rgba(0, 0, 0, 0.1) 85%,
         transparent 100%
     ) !important;
     backdrop-filter: blur(2px) !important;
@@ -990,8 +1058,11 @@ button:disabled,
 .spotlight:nth-of-type(3) {
 	background: linear-gradient(to bottom,
         transparent 0%,
-        rgba(0, 0, 0, 0.2) 20%,
-        rgba(0, 0, 0, 0.3) 80%,
+        rgba(0, 0, 0, 0.15) 15%,
+        rgba(0, 0, 0, 0.35) 30%,
+        rgba(0, 0, 0, 0.6) 50%,
+        rgba(0, 0, 0, 0.35) 70%,
+        rgba(0, 0, 0, 0.15) 85%,
         transparent 100%
     ) !important;
     backdrop-filter: blur(2px) !important;
@@ -1001,8 +1072,11 @@ button:disabled,
 .spotlight:nth-of-type(4) {
 	background: linear-gradient(to bottom,
         transparent 0%,
-        rgba(0, 0, 0, 0.25) 20%,
-        rgba(0, 0, 0, 0.35) 80%,
+        rgba(0, 0, 0, 0.2) 15%,
+        rgba(0, 0, 0, 0.4) 30%,
+        rgba(0, 0, 0, 0.65) 50%,
+        rgba(0, 0, 0, 0.4) 70%,
+        rgba(0, 0, 0, 0.2) 85%,
         transparent 100%
     ) !important;
     backdrop-filter: blur(2px) !important;
@@ -1012,8 +1086,11 @@ button:disabled,
 .spotlight:nth-of-type(5) {
 	background: linear-gradient(to bottom,
         transparent 0%,
-        rgba(0, 0, 0, 0.3) 20%,
-        rgba(0, 0, 0, 0.4) 80%,
+        rgba(0, 0, 0, 0.25) 15%,
+        rgba(0, 0, 0, 0.45) 30%,
+        rgba(0, 0, 0, 0.7) 50%,
+        rgba(0, 0, 0, 0.45) 70%,
+        rgba(0, 0, 0, 0.25) 85%,
         transparent 100%
     ) !important;
     backdrop-filter: blur(2px) !important;
@@ -1023,8 +1100,11 @@ button:disabled,
 .spotlight:nth-of-type(6) {
 	background: linear-gradient(to bottom,
         transparent 0%,
-        rgba(0, 0, 0, 0.35) 20%,
-        rgba(0, 0, 0, 0.45) 80%,
+        rgba(0, 0, 0, 0.3) 15%,
+        rgba(0, 0, 0, 0.5) 30%,
+        rgba(0, 0, 0, 0.75) 50%,
+        rgba(0, 0, 0, 0.5) 70%,
+        rgba(0, 0, 0, 0.3) 85%,
         transparent 100%
     ) !important;
     backdrop-filter: blur(2px) !important;
@@ -1034,8 +1114,11 @@ button:disabled,
 .spotlight:nth-of-type(7) {
 	background: linear-gradient(to bottom,
         transparent 0%,
-        rgba(0, 0, 0, 0.4) 20%,
-        rgba(0, 0, 0, 0.5) 80%,
+        rgba(0, 0, 0, 0.35) 15%,
+        rgba(0, 0, 0, 0.55) 30%,
+        rgba(0, 0, 0, 0.8) 50%,
+        rgba(0, 0, 0, 0.55) 70%,
+        rgba(0, 0, 0, 0.35) 85%,
         transparent 100%
     ) !important;
     backdrop-filter: blur(2px) !important;
@@ -1045,8 +1128,11 @@ button:disabled,
 .spotlight:nth-of-type(8) {
 	background: linear-gradient(to bottom,
         transparent 0%,
-        rgba(0, 0, 0, 0.45) 20%,
-        rgba(0, 0, 0, 0.55) 80%,
+        rgba(0, 0, 0, 0.4) 15%,
+        rgba(0, 0, 0, 0.6) 30%,
+        rgba(0, 0, 0, 0.85) 50%,
+        rgba(0, 0, 0, 0.6) 70%,
+        rgba(0, 0, 0, 0.4) 85%,
         transparent 100%
     ) !important;
     backdrop-filter: blur(2px) !important;
@@ -1056,8 +1142,11 @@ button:disabled,
 .spotlight:nth-of-type(9) {
 	background: linear-gradient(to bottom,
         transparent 0%,
-        rgba(0, 0, 0, 0.5) 20%,
-        rgba(0, 0, 0, 0.6) 80%,
+        rgba(0, 0, 0, 0.45) 15%,
+        rgba(0, 0, 0, 0.65) 30%,
+        rgba(0, 0, 0, 0.9) 50%,
+        rgba(0, 0, 0, 0.65) 70%,
+        rgba(0, 0, 0, 0.45) 85%,
         transparent 100%
     ) !important;
     backdrop-filter: blur(2px) !important;
@@ -1067,8 +1156,11 @@ button:disabled,
 .spotlight:nth-of-type(10) {
 	background: linear-gradient(to bottom,
         transparent 0%,
-        rgba(0, 0, 0, 0.55) 20%,
-        rgba(0, 0, 0, 0.65) 80%,
+        rgba(0, 0, 0, 0.5) 15%,
+        rgba(0, 0, 0, 0.7) 30%,
+        rgba(0, 0, 0, 0.95) 50%,
+        rgba(0, 0, 0, 0.7) 70%,
+        rgba(0, 0, 0, 0.5) 85%,
         transparent 100%
     ) !important;
     backdrop-filter: blur(2px) !important;
@@ -1348,7 +1440,7 @@ button:disabled,
 	z-index: 10001;
 }
 
-/* MOBILE MENU LIQUID GLASS - CLEANER */
+/* MOBILE MENU LIQUID GLASS - MORE TRANSPARENT */
 #menu {
 	-moz-transform: translateX(20em);
 	-webkit-transform: translateX(20em);
@@ -1360,13 +1452,13 @@ button:disabled,
 	transition: transform 0.5s ease;
 	-webkit-overflow-scrolling: touch;
 	background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.15) 0%,
-        rgba(255, 255, 255, 0.1) 50%,
-        rgba(255, 255, 255, 0.15) 100%
+        rgba(255, 255, 255, 0.08) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(255, 255, 255, 0.08) 100%
     ) !important;
-    backdrop-filter: blur(25px) saturate(180%);
+    backdrop-filter: blur(30px) saturate(200%);
     border: none !important;
-    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.3);
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.2);
 	color: #ffffff;
 	height: 100%;
 	max-width: 80%;
@@ -1384,20 +1476,45 @@ button:disabled,
 	padding: 0;
 }
 
-/* MENU LIQUID GLASS ITEMS - CLEANER */
+/* MENU ITEMS - GEOMETRIC SEPARATORS + UNDERLINE HOVER */
 #menu ul > li {
 	border: none !important;
-	margin: 0.3em 0;
+	margin: 0;
 	padding: 0;
-	background: rgba(255, 255, 255, 0.08);
-	border-radius: 12px;
-	backdrop-filter: blur(10px);
+	background: none !important;
+	border-radius: 0;
+	position: relative;
 	transition: all 0.3s ease;
 }
 
-#menu ul > li:hover {
-	background: rgba(255, 255, 255, 0.15);
-	transform: translateX(-8px);
+/* GEOMETRIC SEPARATOR BARS */
+#menu ul > li:not(:last-child)::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 60%;
+	height: 1px;
+	background: linear-gradient(90deg, 
+		transparent 0%, 
+		rgba(255, 255, 255, 0.3) 20%, 
+		rgba(255, 255, 255, 0.6) 50%, 
+		rgba(255, 255, 255, 0.3) 80%, 
+		transparent 100%
+	);
+	transition: all 0.3s ease;
+}
+
+#menu ul > li:hover::after {
+	width: 80%;
+	background: linear-gradient(90deg, 
+		transparent 0%, 
+		rgba(255, 255, 255, 0.5) 20%, 
+		rgba(255, 255, 255, 0.9) 50%, 
+		rgba(255, 255, 255, 0.5) 80%, 
+		transparent 100%
+	);
 }
 
 #menu ul > li > a {
@@ -1409,20 +1526,67 @@ button:disabled,
 	outline: 0;
 	text-decoration: none;
 	text-transform: uppercase;
-	padding: 1em 1.5em;
+	padding: 1.2em 1.5em;
 	text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 	font-weight: 600;
+	position: relative;
+	transition: all 0.3s ease;
 }
 
-/* LANGUAGE SWITCHER - HORIZONTAL */
+/* UNDERLINE HOVER EFFECT */
+#menu ul > li > a::before {
+	content: '';
+	position: absolute;
+	bottom: 0.5em;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 0;
+	height: 2px;
+	background: linear-gradient(90deg, 
+		rgba(255, 255, 255, 0.8), 
+		rgba(255, 255, 255, 1), 
+		rgba(255, 255, 255, 0.8)
+	);
+	transition: width 0.3s ease;
+}
+
+#menu ul > li:hover > a::before {
+	width: 70%;
+}
+
+#menu ul > li:hover > a {
+	transform: translateY(-2px);
+	text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* LANGUAGE SWITCHER - GEOMETRIC STYLE */
 #menu .language-switcher {
 	display: flex !important;
 	flex-direction: row !important;
 	gap: 0 !important;
-	background: rgba(255, 255, 255, 0.1) !important;
-	border-radius: 12px !important;
-	padding: 0.5em !important;
-	margin-top: 1em !important;
+	background: none !important;
+	border-radius: 0 !important;
+	padding: 0.8em 1.5em !important;
+	margin-top: 1.5em !important;
+	position: relative !important;
+}
+
+/* GEOMETRIC SEPARATOR FOR LANGUAGE SWITCHER */
+#menu .language-switcher::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 80%;
+	height: 1px;
+	background: linear-gradient(90deg, 
+		transparent 0%, 
+		rgba(255, 255, 255, 0.4) 20%, 
+		rgba(255, 255, 255, 0.8) 50%, 
+		rgba(255, 255, 255, 0.4) 80%, 
+		transparent 100%
+	);
 }
 
 #menu .language-switcher a {
@@ -1430,13 +1594,44 @@ button:disabled,
 	text-align: center !important;
 	padding: 0.8em 0.5em !important;
 	margin: 0 !important;
-	border-radius: 8px !important;
+	border-radius: 0 !important;
 	transition: all 0.3s ease !important;
+	position: relative !important;
+	font-size: 0.85em !important;
+	font-weight: 700 !important;
+}
+
+/* LANGUAGE SEPARATOR LINES */
+#menu .language-switcher a:not(:last-child)::after {
+	content: '|';
+	position: absolute;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	color: rgba(255, 255, 255, 0.4);
+	font-weight: 300;
+}
+
+/* LANGUAGE HOVER UNDERLINE */
+#menu .language-switcher a::before {
+	content: '';
+	position: absolute;
+	bottom: 0.3em;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 0;
+	height: 1px;
+	background: rgba(255, 255, 255, 0.9);
+	transition: width 0.3s ease;
+}
+
+#menu .language-switcher a:hover::before {
+	width: 60%;
 }
 
 #menu .language-switcher a:hover {
-	background: rgba(255, 255, 255, 0.2) !important;
-	transform: none !important;
+	transform: translateY(-1px) !important;
+	text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) !important;
 }
 
 @media screen and (max-width: 736px) {
@@ -1791,13 +1986,14 @@ body.is-menu-visible #menu {
 	}
 }
 
-/* BANNER PRELOAD STATES */
+/* BANNER PRELOAD STATES - LIQUID GLASS COMPATIBLE */
 body.is-preload #banner h2 {
 	-moz-transform: scale(0.95);
 	-webkit-transform: scale(0.95);
 	-ms-transform: scale(0.95);
 	transform: scale(0.95);
 	opacity: 0;
+	text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
 body.is-preload #banner h2:before, body.is-preload #banner h2:after {
@@ -1814,6 +2010,12 @@ body.is-preload #banner .more {
 
 body.is-preload #banner:after {
 	opacity: 1;
+	background: linear-gradient(135deg, 
+        rgba(46, 56, 66, 0.8) 0%,
+        rgba(46, 56, 66, 0.6) 50%,
+        rgba(46, 56, 66, 0.8) 100%
+    ) !important;
+    backdrop-filter: blur(15px);
 }
 
 /* ============================================
@@ -1875,15 +2077,15 @@ body.is-preload #banner:after {
 }
 
 /* ============================================
-   FOOTER LIQUID GLASS SYSTEM
+   FOOTER LIQUID GLASS SYSTEM - SMALLER
    ============================================ */
 
 #footer {
-	padding: 6em 0 4em 0;
+	padding: 3em 0 2em 0; /* Reduced from 6em 0 4em 0 */
 	background: linear-gradient(135deg, 
-        rgba(103, 64, 64, 0.9) 0%,
-        rgba(103, 64, 64, 0.8) 50%,
-        rgba(103, 64, 64, 0.9) 100%
+        rgba(103, 64, 64, 0.85) 0%,
+        rgba(103, 64, 64, 0.75) 50%,
+        rgba(103, 64, 64, 0.85) 100%
     ) !important;
     backdrop-filter: blur(15px) saturate(180%);
     border-top: 1px solid rgba(255, 255, 255, 0.2);
@@ -1949,13 +2151,13 @@ body.is-preload #banner:after {
 
 @media screen and (max-width: 980px) {
 	#footer {
-		padding: 4em 3em 2em 3em;
+		padding: 2em 2em 1em 2em; /* Further reduced */
 	}
 }
 
 @media screen and (max-width: 736px) {
 	#footer {
-		padding: 3em 2em 1em 2em;
+		padding: 2em 1em 1em 1em; /* Minimal padding */
 	}
 }
 
@@ -2461,3 +2663,56 @@ body.landing #page-wrapper video#bg-video {
 /* ============================================
    END OF MAIN CSS
    ============================================ */
+
+/* ============================================
+   HTML5 UP ATTRIBUTION
+   ============================================ */
+
+.attribution {
+	position: absolute;
+	bottom: 1em;
+	right: 1em;
+	opacity: 0.5;
+	transition: opacity 0.2s ease-in-out;
+	z-index: 1000;
+}
+
+.attribution:hover {
+	opacity: 1;
+}
+
+.attribution-icon {
+	font-size: 1.5em;
+	color: #fff;
+	cursor: pointer;
+}
+
+.attribution-popup {
+	display: none;
+	position: absolute;
+	bottom: 100%;
+	right: 0;
+	background: rgba(0, 0, 0, 0.8);
+	backdrop-filter: blur(5px);
+	color: #fff;
+	padding: 1em;
+	border-radius: 5px;
+	width: 200px;
+	font-size: 0.8em;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.attribution-popup a {
+	color: #21b2a6;
+	text-decoration: none;
+	border-bottom: none;
+}
+
+.attribution-popup a:hover {
+	color: #fff;
+}
+
+.attribution.active .attribution-popup {
+	display: block;
+}

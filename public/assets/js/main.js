@@ -206,3 +206,15 @@
 // toggleBackgroundVideo(); // Włącz/wyłącz
 // setVideoOpacity(0.5); // Zmień przezroczystość
 // togglePingPong();     // Włącz/wyłącz ping-pong effect
+
+	// Attribution popup logic
+	$(document).on('click', '.attribution-icon', function(event) {
+		event.stopPropagation();
+		$(this).parent().toggleClass('active');
+	});
+
+	$(document).on('click', function(event) {
+		if (!$(event.target).closest('.attribution').length) {
+			$('.attribution').removeClass('active');
+		}
+	});
