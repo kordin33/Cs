@@ -7,6 +7,23 @@
 <html>
 	<head>
 		<title> BAU GREEN</title>
+		<script>
+		(function() {
+		  try {
+		    var saved = localStorage.getItem('language');
+		    if (saved !== 'pl') {
+		      var page = (window.location.pathname.split('/').pop() || 'index.html');
+		      var map = { 'index.html': 'index_de.html', 'about.html': 'about_de.html', 'offer.html': 'offer_de.html' };
+		      var target = map[page] || 'index_de.html';
+		      if (window.location.pathname.indexOf(target) === -1) {
+		        window.location.replace(target);
+		      }
+		    }
+		  } catch (e) {
+		    window.location.replace('index_de.html');
+		  }
+		})();
+		</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="icon" type="image/png" href="/images/Icon.png">

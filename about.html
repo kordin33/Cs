@@ -2,6 +2,21 @@
 <html>
 	<head>
 		<title>BAU GREEN - O Firmie</title>
+		<script>
+		(function() {
+		  try {
+		    var saved = localStorage.getItem('language');
+		    if (saved !== 'pl') {
+		      var target = 'about_de.html';
+		      if (window.location.pathname.indexOf(target) === -1) {
+		        window.location.replace(target);
+		      }
+		    }
+		  } catch (e) {
+		    window.location.replace('about_de.html');
+		  }
+		})();
+		</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="icon" type="image/png" href="/images/Icon.png">
