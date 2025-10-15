@@ -1,10 +1,10 @@
-/* ============================================
+﻿/* ============================================
    BAU GREEN - MAIN CSS
    Smart Cleanup Version - All Functions Preserved
    ============================================ */
 
 @import url(fontawesome-all.min.css);
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,800,800italic");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;800&display=swap&subset=latin-ext");
 
 /* ============================================
    CSS RESET - HTML5 UP SPECTRAL BASE
@@ -82,12 +82,32 @@ input, select, textarea {
    ============================================ */
 
 :root {
-    --primary-color: #21b2a6;        /* Turkusowy */
-    --secondary-color: #505393;      /* Fioletowy */
-    --accent-color: #d75a4a;         /* Czerwony akcent */
-    --dark-bg: #2e3842;              /* Ciemne tło */
-    --light-text: #ffffff;           /* Jasny tekst */
-    --overlay-dark: rgba(0,0,0,0.3); /* Ciemne nakładki */
+    --color-navy: #0f2a37;
+    --color-slate: #152733;
+    --color-outline: #2a3c49;
+    --color-teal-start: #1fd1b0;
+    --color-teal-end: #3994a6;
+    --color-cyan-start: #50c7f7;
+    --color-cyan-end: #4da6d8;
+    --color-indigo-start: #7a87ff;
+    --color-indigo-end: #5060e9;
+    --color-jade-start: #53dfb8;
+    --color-jade-end: #2baa93;
+    --color-warm-start: #f2a65a;
+    --color-warm-end: #db7f3f;
+    --halo-color: rgba(127, 239, 226, 0.3);
+    --shadow-elevated: 0 12px 28px rgba(0, 0, 0, 0.35);
+    --primary-color: var(--color-teal-start);
+    --secondary-color: var(--color-slate);
+    --accent-color: var(--color-warm-start);
+    --dark-bg: var(--color-navy);
+    --light-text: #ffffff;
+    --overlay-dark: rgba(21, 39, 51, 0.72);
+    /* Brand palette for icon borders */
+    --oxide-teal: #2E8C82;   /* Oxide Teal */
+    --steel-blue: #436D8E;   /* Steel Blue */
+    --baltic-indigo: #3F5677;/* Baltic Indigo */
+    --fog-cyan: #6FA6B2;     /* Fog Cyan */
 }
 
 /* ============================================
@@ -107,7 +127,7 @@ html {
 }
 
 body {
-	background: #4775a2;
+	background: var(--color-navy);
 }
 
 /* ============================================
@@ -818,146 +838,85 @@ button:disabled,
    ============================================ */
 
 .features {
-	display: -moz-flex;
-	display: -webkit-flex;
-	display: -ms-flex;
-	display: flex;
-	-moz-flex-wrap: wrap;
-	-webkit-flex-wrap: wrap;
-	-ms-flex-wrap: wrap;
-	flex-wrap: wrap;
-	-moz-justify-content: center;
-	-webkit-justify-content: center;
-	-ms-justify-content: center;
-	justify-content: center;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+	gap: clamp(1.5rem, 4vw, 2.5rem);
 	list-style: none;
 	padding: 0;
+	margin: 0;
 	width: 100%;
 }
 
 .features li {
-	padding: 5em 4em 2em 6em;
-	margin-bottom: 3px;
-	margin-left: 3px;
-	display: block;
-	position: relative;
-	text-align: left;
-	width: 45%;
-	border-radius: 12px;
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	padding: clamp(1.25rem, 3.5vw, 2rem);
+	border-radius: 16px;
+	background: rgba(10, 24, 36, 0.75) !important;
+	backdrop-filter: blur(3px);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	box-shadow: 0 20px 45px -25px rgba(0, 0, 0, 0.75);
+	min-height: 16rem;
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* FEATURES - TRANSPARENT BACKGROUNDS */
-.features li:nth-child(1) {
-	background: rgba(0, 0, 0, 0.1) !important;
-    backdrop-filter: blur(1px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+.features li:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 24px 50px -24px rgba(0, 0, 0, 0.85);
 }
 
-.features li:nth-child(2) {
-	background: rgba(0, 0, 0, 0.15) !important;
-    backdrop-filter: blur(1px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
+.features li:before { display: none !important; }
 
-.features li:nth-child(3) {
-	background: rgba(0, 0, 0, 0.2) !important;
-    backdrop-filter: blur(1px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+/* remove accent bar near h3 headings */
+.features li h3 {
+    position: static;
+    padding-left: 0;
 }
-
-.features li:nth-child(4) {
-	background: rgba(0, 0, 0, 0.25) !important;
-    backdrop-filter: blur(1px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.features li:nth-child(5) {
-	background: rgba(0, 0, 0, 0.3) !important;
-    backdrop-filter: blur(1px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.features li:nth-child(6) {
-	background: rgba(0, 0, 0, 0.35) !important;
-    backdrop-filter: blur(1px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.features li:nth-child(7) {
-	background: rgba(0, 0, 0, 0.4) !important;
-    backdrop-filter: blur(1px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.features li:nth-child(8) {
-	background: rgba(0, 0, 0, 0.45) !important;
-    backdrop-filter: blur(1px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.features li:nth-child(9) {
-	background: rgba(0, 0, 0, 0.5) !important;
-    backdrop-filter: blur(1px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.features li:nth-child(10) {
-	background: rgba(0, 0, 0, 0.55) !important;
-    backdrop-filter: blur(1px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.features li:before {
-	display: block;
-	color: #00ffcc;
-	position: absolute;
-	left: 1.75em;
-	top: 2.75em;
-	font-size: 1.5em;
-}
-
-.features li:nth-child(1) {
-	border-top-left-radius: 3px;
-}
-
-.features li:nth-child(2) {
-	border-top-right-radius: 3px;
-}
-
-.features li:nth-last-child(1) {
-	border-bottom-right-radius: 3px;
-}
-
-.features li:nth-last-child(2) {
-	border-bottom-left-radius: 3px;
+.features li h3::before {
+    content: none !important;
+    display: none !important;
 }
 
 /* FEATURES RESPONSIVE */
 @media screen and (max-width: 980px) {
-	.features li {
-		padding: 3em 2em 1em 2em;
-		text-align: center;
+	.features {
+		grid-template-columns: repeat(2, minmax(14rem, 1fr));
 	}
 
-	.features li:before {
-		left: 0;
-		margin: 0 0 1em 0;
-		position: relative;
-		top: 0;
-	}
+	.features li {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	padding: clamp(1.25rem, 3.5vw, 2rem);
+	border-radius: 16px;
+	background: rgba(10, 24, 36, 0.75) !important;
+	backdrop-filter: blur(3px);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	box-shadow: 0 20px 45px -25px rgba(0, 0, 0, 0.75);
+	min-height: 16rem;
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
 }
 
 @media screen and (max-width: 736px) {
-	.features li {
-		padding: 3em 0 1em 0;
-		background-color: transparent !important;
-		border-top: solid 2px #fff;
-		width: 100%;
+	.features {
+		grid-template-columns: 1fr;
 	}
 
-	.features li:first-child {
-		border-top: 0;
-	}
+	.features li {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	padding: clamp(1.25rem, 3.5vw, 2rem);
+	border-radius: 16px;
+	background: rgba(10, 24, 36, 0.75) !important;
+	backdrop-filter: blur(3px);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	box-shadow: 0 20px 45px -25px rgba(0, 0, 0, 0.75);
+	min-height: 16rem;
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
 }
 
 /* ============================================
@@ -1007,7 +966,7 @@ button:disabled,
 }
 
 /* ============================================
-   SPOTLIGHT IMPROVED GRADIENTS - TRANSPARENT EDGES → DARK CENTER
+   SPOTLIGHT IMPROVED GRADIENTS - TRANSPARENT EDGES Ă˘â€ â€™ DARK CENTER
    ============================================ */
 
 /* BASE SPOTLIGHT - BETTER GRADIENT */
@@ -1233,17 +1192,71 @@ button:disabled,
 	padding: 0;
 }
 
-/* STYLE 1 - PRIMARY SECTION - TRANSPARENT WITH GRADIENT */
+/* STYLE 1 - PRIMARY SECTION WITH CONSTANT OVERLAY */
 .wrapper.style1 {
-	background: linear-gradient(to bottom,
-        transparent 0%,
-        rgba(7, 12, 13, 0.8) 10%,
-        rgba(74, 114, 164, 0.8) 90%,
-        transparent 100%
-    ) !important;
-    backdrop-filter: blur(2px);
-    position: relative;
+	position: relative;
+	overflow: hidden;
+	background: transparent !important;
 	color: #c8ece9;
+}
+
+ .wrapper.style1::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: rgba(5, 12, 20, 0.64);
+	backdrop-filter: blur(4px);
+	pointer-events: none;
+	z-index: 0;
+}
+
+/* soft fade at top/bottom to blend sections */
+.wrapper.style1::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(to bottom, rgba(6,14,22,0) 0%, rgba(6,14,22,0.35) 6%, rgba(6,14,22,0) 94%, rgba(6,14,22,0) 100%);
+	pointer-events: none;
+	z-index: 0;
+}
+
+
+.wrapper.style1 > .inner {
+    position: relative;
+    z-index: 1;
+    /* Szerzej, aby wykorzystaÄ‡ przestrzeĹ„ */
+    max-width: 85em;
+    width: min(96%, 85em);
+    padding: clamp(2rem, 4vw, 3rem) clamp(1.25rem, 3vw, 2rem);
+}
+
+.wrapper.style1.special header.major h2,
+.wrapper.style1.special header.major h3,
+.wrapper.style1.special header.major h4,
+.wrapper.style1.special header.major h5,
+.wrapper.style1.special header.major h6,
+.wrapper.style1.special .features h3 {
+	text-transform: none;
+	letter-spacing: 0.02em;
+}
+
+.wrapper.style1.special header.major h2 {
+	font-size: clamp(1.9rem, 2.5vw + 1rem, 2.75rem);
+	line-height: 1.3;
+	margin-bottom: 1.5rem;
+}
+
+.wrapper.style1.special .features h3 {
+	font-size: clamp(1.15rem, 1.3vw + 1rem, 1.4rem);
+	font-weight: 600;
+	line-height: 1.4;
+	margin: 0;
+}
+
+.wrapper.style1.special .features p {
+	margin: 0;
+	line-height: 1.6;
+	letter-spacing: 0.01em;
 }
 
 .wrapper.style1 strong, .wrapper.style1 b {
@@ -1305,8 +1318,18 @@ button:disabled,
 
 @media screen and (max-width: 736px) {
 	.wrapper.style1 .features li {
-		border-top-color: rgba(0, 0, 0, 0.125);
-	}
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	padding: clamp(1.25rem, 3.5vw, 2rem);
+	border-radius: 16px;
+	background: rgba(10, 24, 36, 0.75) !important;
+	backdrop-filter: blur(3px);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	box-shadow: 0 20px 45px -25px rgba(0, 0, 0, 0.75);
+	min-height: 16rem;
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
 }
 
 /* STYLE 2 - NEUTRAL */
@@ -1386,8 +1409,18 @@ button:disabled,
 
 @media screen and (max-width: 736px) {
 	.wrapper.style3 .features li {
-		border-top-color: rgba(0, 0, 0, 0.125);
-	}
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	padding: clamp(1.25rem, 3.5vw, 2rem);
+	border-radius: 16px;
+	background: rgba(10, 24, 36, 0.75) !important;
+	backdrop-filter: blur(3px);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	box-shadow: 0 20px 45px -25px rgba(0, 0, 0, 0.75);
+	min-height: 16rem;
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
 }
 
 /* STYLE 4 - TRANSPARENT */
@@ -1395,7 +1428,7 @@ button:disabled,
 	background-color: transparent;
 }
 
-/* STYLE 5 - LIGHT (jeśli potrzebny) */
+/* STYLE 5 - LIGHT (jeÄąâ€şli potrzebny) */
 .wrapper.style5 {
 	background-color: #ffffff;
 	color: #4E4852;
@@ -2184,7 +2217,7 @@ body.landing #page-wrapper::before {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+	background: linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.4));
 	z-index: -1;
 }
 
@@ -2341,25 +2374,240 @@ body.is-mobile.landing #footer {
 
 .popup-liquid-glass {
 	background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.15) 0%,
-        rgba(255, 255, 255, 0.05) 50%,
-        rgba(255, 255, 255, 0.15) 100%
-    );
-    backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 25px;
-    padding: 40px;
-    max-width: 500px;
-    width: 90%;
-    max-height: 80vh;
-    overflow-y: auto;
-    position: relative;
-    box-shadow: 
-        0 20px 60px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+		rgba(255, 255, 255, 0.14) 0%,
+		rgba(255, 255, 255, 0.06) 50%,
+		rgba(255, 255, 255, 0.14) 100%
+	);
+	backdrop-filter: blur(8px) saturate(140%);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	border-radius: 25px;
+	padding: 40px;
+	max-width: 500px;
+	width: 90%;
+	max-height: 80vh;
+	overflow-y: auto;
+	position: relative;
+	box-shadow: 
+		0 20px 60px rgba(0, 0, 0, 0.3),
+		inset 0 1px 0 rgba(255, 255, 255, 0.2);
 	margin: 15% auto;
 	text-align: center;
 }
+
+/* Map popup overlay (spĂłjny z #contact-popup) */
+#map-popup {
+	display: none;
+	position: fixed;
+	z-index: 10003;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.5);
+	backdrop-filter: blur(5px);
+}
+
+/* Kondensacja sekcji â€žDlaczego Bau Green?â€ť */
+.features.condensed {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+}
+
+.features.condensed .feature-item {
+    list-style: none;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 16px;
+    padding: 1.25rem 1.25rem 1.1rem 1.25rem;
+    min-height: 14rem;
+    backdrop-filter: blur(6px) saturate(140%);
+    box-shadow: 0 30px 60px -30px rgba(0,0,0,0.55);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.features.condensed .feature-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 40px 80px -35px rgba(0,0,0,0.6);
+}
+
+/* Ukrycie wbudowanych ikon w starym ukĹ‚adzie */
+.features li.icon::before {
+	display: none !important;
+}
+.features li.icon {
+	padding-left: 0 !important;
+}
+
+/* Glass vibe dla elementĂłw kontaktu */
+.contact-item.glass {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 12px;
+    padding: 1rem;
+    backdrop-filter: blur(6px) saturate(140%);
+}
+
+/* ============================================
+   DUĹ»E IKONY LIQUID GLASS
+   ============================================ */
+.features.iconized {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.features.iconized .feature-card {
+    list-style: none;
+    background: linear-gradient(150deg, rgba(21, 39, 51, 0.6), rgba(15, 42, 55, 0.5));
+    border: 1px solid rgba(42, 60, 73, 0.55);
+    border-radius: 18px;
+    padding: 1.5rem;
+    min-height: 16rem;
+    backdrop-filter: blur(18px) saturate(180%);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.features.iconized .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.38);
+    border-color: rgba(127, 239, 226, 0.35);
+}
+
+
+.lg-icon {
+    /* Primary tint colors (overridden by variant classes) */
+    --lg-c1: var(--color-teal-start);
+    --lg-c2: var(--color-teal-end);
+    /* Border color per-variant, with sensible fallback */
+    --lg-border: rgba(255,255,255,0.18);
+    width: clamp(96px, 10vw, 112px);
+    height: clamp(96px, 10vw, 112px);
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.85rem;
+    position: relative;
+    /* Lighter, more transparent glass look */
+    background:
+        radial-gradient(circle at 28% 24%, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0.06) 32%, rgba(255,255,255,0) 60%),
+        linear-gradient(150deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02)),
+        radial-gradient(circle at 72% 76%, rgba(255,255,255,0.08), rgba(255,255,255,0) 60%),
+        radial-gradient(120% 120% at 18% 18%, color-mix(in srgb, var(--lg-c1), transparent 58%) 0%, rgba(15,42,55,0.16) 70%),
+        radial-gradient(120% 120% at 82% 82%, color-mix(in srgb, var(--lg-c2), transparent 58%) 0%, rgba(15,42,55,0.16) 68%);
+    background-blend-mode: screen, overlay, normal, normal, normal;
+    border: 1.5px solid var(--lg-border);
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.06),
+        0 12px 28px rgba(0,0,0,0.32);
+    backdrop-filter: blur(20px) saturate(180%);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease, border-color 0.25s ease;
+    will-change: transform, filter;
+    color: rgba(255,255,255,0.9);
+    outline: none;
+}
+
+.lg-icon::before {
+    content: "";
+    position: absolute;
+    inset: -25%;
+    border-radius: inherit;
+    background: radial-gradient(circle, var(--halo-color) 0%, rgba(127,239,226,0) 70%);
+    opacity: 0;
+    filter: blur(6px);
+    pointer-events: none;
+    transition: opacity 0.25s ease, filter 0.25s ease;
+}
+
+.lg-icon::after {
+    content: "";
+    position: absolute;
+    inset: 16% 18%;
+    border-radius: inherit;
+    background:
+        radial-gradient(circle at 32% 26%, rgba(255,255,255,0.4), rgba(255,255,255,0) 55%),
+        radial-gradient(circle at 70% 74%, rgba(255,255,255,0.12), rgba(255,255,255,0) 60%);
+    opacity: 0.85;
+    pointer-events: none;
+}
+
+.lg-icon:hover,
+.lg-icon:focus-visible {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--lg-border), white 25%);
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.16),
+        0 16px 36px rgba(0,0,0,0.32),
+        0 0 0 2px color-mix(in srgb, var(--lg-border), transparent 40%);
+    filter: drop-shadow(0 10px 24px rgba(0,0,0,0.32));
+}
+
+.lg-icon:hover::before,
+.lg-icon:focus-visible::before {
+    opacity: 1;
+    filter: blur(12px);
+}
+
+.lg-icon .icon {
+    font-size: 1.9rem;
+    color: rgba(255, 255, 255, 0.9);
+    mix-blend-mode: screen;
+    text-shadow: 0 8px 18px rgba(255,255,255,0.18);
+}
+
+/* Variant mappings to requested palette and borders */
+.lg-teal  { --lg-c1: var(--oxide-teal);    --lg-c2: var(--fog-cyan);     --lg-border: rgba(46,140,130,0.55); }
+.lg-indigo{ --lg-c1: var(--baltic-indigo); --lg-c2: var(--steel-blue);   --lg-border: rgba(63,86,119,0.55); }
+.lg-jade  { --lg-c1: var(--fog-cyan);     --lg-c2: var(--oxide-teal);    --lg-border: rgba(111,166,178,0.55); }
+.lg-warm  { --lg-c1: var(--steel-blue);   --lg-c2: var(--baltic-indigo); --lg-border: rgba(67,109,142,0.55); }
+
+@media screen and (max-width: 736px) {
+    .lg-icon { width: 88px; height: 88px; }
+    .lg-icon .icon { font-size: 1.6rem; }
+}
+
+/* Section fade separators (very subtle) */
+.wrapper { position: relative; }
+.wrapper::before,
+.wrapper::after {
+  content: '';
+  position: absolute;
+  left: 0; width: 100%; height: 56px;
+  pointer-events: none;
+}
+/* top fade */
+.wrapper::before {
+  top: 0;
+  background: linear-gradient(to bottom,
+    rgba(255,255,255,0.05),
+    rgba(255,255,255,0.025) 35%,
+    rgba(255,255,255,0.01) 60%,
+    rgba(255,255,255,0.0) 100%);
+  mix-blend-mode: overlay;
+}
+/* bottom fade */
+.wrapper::after {
+  bottom: 0;
+  background: linear-gradient(to top,
+    rgba(255,255,255,0.05),
+    rgba(255,255,255,0.025) 35%,
+    rgba(255,255,255,0.01) 60%,
+    rgba(255,255,255,0.0) 100%);
+  mix-blend-mode: overlay;
+}
+.wrapper::before { top: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0)); }
+.wrapper::after { bottom: 0; background: linear-gradient(to top, rgba(0,0,0,0.35), rgba(0,0,0,0)); }
 
 .close-button {
 	color: #aaa;
@@ -2465,16 +2713,6 @@ body.landing #page-wrapper video#bg-video {
 }
 
 /* HOVER EFFECTS FOR TRANSPARENT SECTIONS */
-.wrapper.style1:hover {
-    background: rgba(92, 102, 120, 0.544) !important;
-    transition: background 0.3s ease, backdrop-filter 0.3s ease;
-}
-
-.wrapper.style3:hover {
-    background: rgba(92, 102, 120, 0.544) !important;
-    transition: background 0.3s ease, backdrop-filter 0.3s ease;
-}
-
 .wrapper.style1, .wrapper.style3 {
     transition: background 0.3s ease, backdrop-filter 0.3s ease;
 }
@@ -2510,14 +2748,8 @@ body.landing #page-wrapper video#bg-video {
 @media screen and (max-width: 768px) {
     /* FORCE TRANSPARENT WRAPPERS - IDENTICAL TO DESKTOP */
     .wrapper.style1 {
-        background: linear-gradient(to bottom,
-            transparent 0%,
-            rgba(7, 12, 13, 0.8) 10%,
-            rgba(74, 114, 164, 0.8) 90%,
-            transparent 100%
-        ) !important;
-        backdrop-filter: blur(2px) !important;
-        padding: 3em 1em 2em 1em !important;
+        background: transparent !important;
+        padding: clamp(4rem, 12vw, 5rem) 0 !important;
         color: #c8ece9 !important;
     }
     
@@ -2533,15 +2765,25 @@ body.landing #page-wrapper video#bg-video {
         color: #d3d4e4 !important;
     }
     
-    /* FORCE TRANSPARENT FEATURES */
-    .features li {
-        width: 100% !important; 
-        padding: 2em 1em !important;
-        background: rgba(0, 0, 0, 0.2) !important;
-        backdrop-filter: blur(1px) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        border-radius: 12px !important;
+    /* MOBILE FEATURE CARDS */
+    .features {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
     }
+
+    .features li {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	padding: clamp(1.25rem, 3.5vw, 2rem);
+	border-radius: 16px;
+	background: rgba(10, 24, 36, 0.75) !important;
+	backdrop-filter: blur(3px);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	box-shadow: 0 20px 45px -25px rgba(0, 0, 0, 0.75);
+	min-height: 16rem;
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
     
     /* FORCE TRANSPARENT SPOTLIGHTS ON MOBILE */
     .spotlight {
@@ -2596,13 +2838,7 @@ body.landing #page-wrapper video#bg-video {
 /* FORCE STYLES FOR ALL SCREEN SIZES */
 @media screen and (max-width: 980px) {
     .wrapper.style1 {
-        background: linear-gradient(to bottom,
-            transparent 0%,
-            rgba(7, 12, 13, 0.8) 10%,
-            rgba(74, 114, 164, 0.8) 90%,
-            transparent 100%
-        ) !important;
-        backdrop-filter: blur(2px) !important;
+        background: transparent !important;
     }
     
     .wrapper.style3 {
@@ -2758,10 +2994,10 @@ body.landing #page-wrapper video#bg-video {
 }
 
 /* ============================================
-   2. POPRAWKI VIDEO TŁA NA MOBILE + USUNIĘCIE IKONY PLAY
+   2. POPRAWKI VIDEO TÄąÂA NA MOBILE + USUNIĂ„ÂCIE IKONY PLAY
    ============================================ */
 
-/* FORCE VIDEO NA WSZYSTKICH URZĄDZENIACH */
+/* FORCE VIDEO NA WSZYSTKICH URZĂ„â€žDZENIACH */
 body.landing #page-wrapper video#bg-video {
     display: block !important;
     position: fixed !important;
@@ -2776,7 +3012,7 @@ body.landing #page-wrapper video#bg-video {
     pointer-events: none !important;
 }
 
-/* USUNIĘCIE IKON ODTWARZANIA */
+/* USUNIĂ„ÂCIE IKON ODTWARZANIA */
 video::-webkit-media-controls {
     display: none !important;
 }
@@ -2839,7 +3075,7 @@ video::-webkit-media-controls-panel {
 }
 
 /* ============================================
-   3. WIĘKSZE IKONY - SPOTLIGHT SECTIONS
+   3. WIĂ„ÂKSZE IKONY - SPOTLIGHT SECTIONS
    ============================================ */
 
 .spotlight .content {
@@ -2856,12 +3092,12 @@ video::-webkit-media-controls-panel {
     align-items: center !important;
 }
 
-/* WIĘKSZE IKONY W FEATURES */
+/* WIĂ„ÂKSZE IKONY W FEATURES */
 .icon.major {
-    font-size: 2em !important; /* Zwiększone z 1.35em */
-    height: calc(4em + 2px) !important; /* Zwiększone z 3em */
-    line-height: 4em !important; /* Zwiększone z 3em */
-    width: calc(4em + 2px) !important; /* Zwiększone z 3em */
+    font-size: 2em !important; /* ZwiĂ„â„˘kszone z 1.35em */
+    height: calc(4em + 2px) !important; /* ZwiĂ„â„˘kszone z 3em */
+    line-height: 4em !important; /* ZwiĂ„â„˘kszone z 3em */
+    width: calc(4em + 2px) !important; /* ZwiĂ„â„˘kszone z 3em */
     background: rgba(255, 255, 255, 0.15) !important;
     backdrop-filter: blur(10px) !important;
     border: 2px solid rgba(255, 255, 255, 0.3) !important;
@@ -2872,7 +3108,7 @@ video::-webkit-media-controls-panel {
 }
 
 .icon.major:before {
-    font-size: 1.8em !important; /* Zwiększone z 1.5em */
+    font-size: 1.8em !important; /* ZwiĂ„â„˘kszone z 1.5em */
 }
 
 .icon.major:hover {
@@ -2883,9 +3119,9 @@ video::-webkit-media-controls-panel {
         inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
 }
 
-/* WIĘKSZE IKONY W SOCIAL MEDIA */
+/* WIĂ„ÂKSZE IKONY W SOCIAL MEDIA */
 #footer .icons {
-    font-size: 1.8em !important; /* Zwiększone z 1.25em */
+    font-size: 1.8em !important; /* ZwiĂ„â„˘kszone z 1.25em */
     margin: 2em 0 !important;
 }
 
@@ -2909,134 +3145,29 @@ video::-webkit-media-controls-panel {
 }
 
 /* ============================================
-   4. USUNIĘCIE SZARYCH HOVER + LIQUID GLASS BŁYSK
-
-
-
-.wrapper.style1:hover,
-.wrapper.style3:hover {
-    background: linear-gradient(to bottom,
-        transparent 0%,
-        rgba(7, 12, 13, 0.8) 10%,
-        rgba(74, 114, 164, 0.8) 90%,
-        transparent 100%
-    ) !important; /* Bez zmian koloru 
-    transform: none !important;
-}
-
-
-/* === BLOK START: LIQUID FLASH HOVER === 
-.liquid-flash-hover {
-    position: relative !important;
-    overflow: hidden !important;
-}
-
-.liquid-flash-hover::before {
-    content: '' !important;
-    position: absolute !important;
-    top: -50% !important;
-    left: -50% !important;
-    width: 200% !important;
-    height: 200% !important;
-    background: linear-gradient(45deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0.1) 25%,
-        rgba(255, 255, 255, 0.3) 50%,
-        rgba(255, 255, 255, 0.1) 75%,
-        transparent 100%
-    ) !important;
-    transform: translateX(-100%) translateY(-100%) rotate(45deg) !important;
-    transition: transform 0.6s ease !important;
-    pointer-events: none !important;
-    z-index: 1 !important;
-}
-
-.liquid-flash-hover:hover::before {
-    transform: translateX(100%) translateY(100%) rotate(45deg) !important;
-}
-
-.liquid-flash-hover * {
-    position: relative !important;
-    z-index: 2 !important;
-}
-/* === BLOK END: LIQUID FLASH HOVER === */
-
-/* APLIKACJA FLASH EFFECT DO RÓŻNYCH ELEMENTÓW 
-.features li,
-.spotlight,
-.liquid-glass-btn,
-.icon.major,
-.map-container {
-    position: relative !important;
-    overflow: hidden !important;
-}
-
-.features li::before,
-.spotlight::before,
-.liquid-glass-btn::before,
-.icon.major::before,
-.map-container::before {
-    content: '' !important;
-    position: absolute !important;
-    top: -50% !important;
-    left: -50% !important;
-    width: 200% !important;
-    height: 200% !important;
-    background: linear-gradient(45deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0.1) 25%,
-        rgba(255, 255, 255, 0.3) 50%,
-        rgba(255, 255, 255, 0.1) 75%,
-        transparent 100%
-    ) !important;
-    transform: translateX(-100%) translateY(-100%) rotate(45deg) !important;
-    transition: transform 0.1s ease !important;
-    pointer-events: none !important;
-    z-index: 1 !important;
-}
-
-.features li:hover::before,
-.spotlight:hover::before,
-.liquid-glass-btn:hover::before,
-.icon.major:hover::before,
-.map-container:hover::before {
-    transform: translateX(100%) translateY(100%) rotate(45deg) !important;
-}
-
-/* ZACHOWANIE ZAWARTOŚCI NAD EFEKTEM 
-.features li > *,
-.spotlight > *,
-.liquid-glass-btn > *,
-.icon.major > *,
-.map-container > * {
-    position: relative !important;
-    z-index: 2 !important;
-}
-
-/* ============================================
-   5. DODATKOWE POPRAWKI MOBILE
-   ============================================ 
+   5. MOBILE REFINEMENTS
+   ============================================ */
 @media screen and (max-width: 768px) {
-    /* WIĘKSZE IKONY NA MOBILE 
+    /* Larger icons on mobile */
     .icon.major {
         font-size: 1.5em !important;
         height: calc(3.5em + 2px) !important;
         line-height: 3.5em !important;
         width: calc(3.5em + 2px) !important;
     }
-    
-     POPRAWKI MAPY NA MOBILE 
+
+    /* Map tweaks on mobile */
     .map-container {
         margin: 1em 0 !important;
         border-radius: 15px !important;
     }
-    
+
     .map-container iframe {
         height: 300px !important;
         border-radius: 10px !important;
     }
-    
-    /* FORCE VIDEO POKAZYWANIE *
+
+    /* Force background video visibility */
     body.landing #page-wrapper {
         background: none !important;
         background-image: none !important;
@@ -3044,29 +3175,57 @@ video::-webkit-media-controls-panel {
     }
 }
 
- ============================================
-   6. PERFORMANCE OPTIMIZATIONS
-   ============================================ 
-
-/* GPU Acceleration dla smooth animations 
-.liquid-flash-hover::before,
-.features li::before,
-.spotlight::before,
-.map-container::before {
-    will-change: transform !important;
-    transform: translateZ(0) !important;
+/* ============================================
+   6. ACCESSIBILITY
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    .features li {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	padding: clamp(1.25rem, 3.5vw, 2rem);
+	border-radius: 16px;
+	background: rgba(10, 24, 36, 0.75) !important;
+	backdrop-filter: blur(3px);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	box-shadow: 0 20px 45px -25px rgba(0, 0, 0, 0.75);
+	min-height: 16rem;
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* Accessibility - reduced motion *
-@media (prefers-reduced-motion: reduce) {
-    .liquid-flash-hover::before,
-    .features li::before,
-    .spotlight::before,
-    .map-container::before {
-        transition: none !important;
-        transform: translateX(-100%) translateY(-100%) rotate(45deg) !important;
+    .features li:hover {
+        transform: none !important;
+        box-shadow: 0 20px 45px -25px rgba(0, 0, 0, 0.75);
     }
 }
-	/* ============================================
+
+/* ============================================
    END OF CSS
    ============================================ */
+
+
+
+
+
+
+
+
+
+/* Contact grid divider */
+.contact-grid { position: relative; }
+.contact-grid::after {
+  content: '';
+  position: absolute;
+  top: 6%;
+  bottom: 6%;
+  left: 50%;
+  width: 1px;
+  background: rgba(255,255,255,0.35);
+  transform: translateX(-0.5px);
+}
+@media (max-width: 800px) {
+  .contact-grid { grid-template-columns: 1fr !important; }
+  .contact-grid::after { display: none; }
+}
+
+

@@ -1,4 +1,4 @@
-/*
+﻿/*
 	Spectral by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
@@ -90,21 +90,31 @@
 		
 		if (backgroundVideo) {
 			
-			// SLOW MOTION - ustaw prędkość odtwarzania
-			backgroundVideo.playbackRate = 0.8; // 0.5 = połowa prędkości
+			// SLOW MOTION - ustaw prÄ™dkoĹ›Ä‡ odtwarzania
+			backgroundVideo.playbackRate = 0.8; // 0.5 = poĹ‚owa prÄ™dkoĹ›ci
 			
-			// Upewnij się że video jest wyciszone i zapętlone
+			// Upewnij siÄ™ ĹĽe video jest wyciszone i zapÄ™tlone
 			backgroundVideo.muted = true;
-			backgroundVideo.loop = true; // Włącz zwykły loop
+			backgroundVideo.loop = true; // WĹ‚Ä…cz zwykĹ‚y loop
 			
-			// Płynne uruchomienie po załadowaniu
+			// PĹ‚ynne uruchomienie po zaĹ‚adowaniu
 			backgroundVideo.addEventListener('canplaythrough', function() {
 				backgroundVideo.play().catch(function(error) {
-					console.log('Autoplay zablokowany przez przeglądarkę');
+					console.log('Autoplay zablokowany przez przeglÄ…darkÄ™');
+				});
+			});
+
+			// Fallback: sprĂłbuj rozpoczÄ…Ä‡ odtwarzanie po pierwszej interakcji uĹĽytkownika
+			['click', 'touchstart'].forEach(function(evt) {
+				document.addEventListener(evt, function oncePlay() {
+					if (backgroundVideo.paused) {
+						backgroundVideo.play().catch(function(){});
+					}
+					document.removeEventListener(evt, oncePlay);
 				});
 			});
 			
-			// INTERAKTYWNE ZMIANY PRĘDKOŚCI
+			// INTERAKTYWNE ZMIANY PRÄDKOĹšCI
 			$('.wrapper').on('mouseenter', function() {
 				if (!browser.mobile) {
 					backgroundVideo.playbackRate = 0.7; // Bardzo wolno
@@ -113,7 +123,7 @@
 			
 			$('.wrapper').on('mouseleave', function() {
 				if (!browser.mobile) {
-					backgroundVideo.playbackRate = 0.8; // Powrót do normalnego slow-mo
+					backgroundVideo.playbackRate = 0.8; // PowrĂłt do normalnego slow-mo
 				}
 			});
 		}
@@ -123,7 +133,7 @@
 	// DODATKOWE FUNKCJE VIDEO
 	// ============================================
 
-	// Funkcja do łatwej zmiany prędkości video
+	// Funkcja do Ĺ‚atwej zmiany prÄ™dkoĹ›ci video
 	window.setVideoSpeed = function(speed) {
 		var video = document.getElementById('bg-video');
 		if (video && !browser.mobile) {
@@ -131,7 +141,7 @@
 		}
 	};
 
-	// Funkcja do włączania/wyłączania video
+	// Funkcja do wĹ‚Ä…czania/wyĹ‚Ä…czania video
 	window.toggleBackgroundVideo = function() {
 		var video = document.getElementById('bg-video');
 		if (video) {
@@ -143,7 +153,7 @@
 		}
 	};
 
-	// Funkcja do zmiany przezroczystości video
+	// Funkcja do zmiany przezroczystoĹ›ci video
 	window.setVideoOpacity = function(opacity) {
 		var video = document.getElementById('bg-video');
 		if (video) {
@@ -155,7 +165,7 @@
 	// RESPONSIVE VIDEO HANDLING
 	// ============================================
 
-	// Wyłącz video na urządzeniach mobilnych dla wydajności
+	// WyĹ‚Ä…cz video na urzÄ…dzeniach mobilnych dla wydajnoĹ›ci
 	breakpoints.on('<=medium', function() {
 		var video = document.getElementById('bg-video'); // Twoje ID
 		if (video) {
@@ -169,7 +179,7 @@
 		if (video) {
 			video.style.display = 'block';
 			video.play().catch(function(error) {
-				console.log('Nie można wznowić video');
+				console.log('Nie moĹĽna wznowiÄ‡ video');
 			});
 		}
 	});
@@ -181,31 +191,35 @@
 
 	// Close button and outside click handling
 	$(document).on('click', function(e) {
-		var popup = $('#contact-popup');
-		var closeButton = $('.close-button');
+	var contactPopup = $('#contact-popup');
+	var mapPopup = $('#map-popup');
+	var closeButton = $('.close-button');
 
-		// If the popup is visible
-		if (popup.is(':visible')) {
-			// If the click is on the close button or outside the popup content
-			if ($(e.target).is(closeButton) || !$(e.target).closest('.popup-content').length) {
-				popup.fadeOut();
-			}
-		}
+	// Zamknij widoczne popupy na klik poza treĹ›ciÄ… lub na przycisk zamkniÄ™cia
+	if ($(e.target).is(closeButton) || !$(e.target).closest('.popup-liquid-glass').length) {
+		if (contactPopup.is(':visible')) contactPopup.fadeOut();
+		if (mapPopup.is(':visible')) mapPopup.fadeOut();
+	}
+	});
+
+	// Map popup: otwieranie po klikniÄ™ciu adresu
+$("#address-link").on('click', function(e) { e.preventDefault(); e.stopPropagation();
+		$('#map-popup').fadeIn();
 	});
 
 })(jQuery);
 
 // ============================================
-// KONSOLA DEBUG - użyj w przeglądarce
+// KONSOLA DEBUG - uĹĽyj w przeglÄ…darce
 // ============================================
 
-// Przykłady komend do wpisania w konsoli:
+// PrzykĹ‚ady komend do wpisania w konsoli:
 // setVideoSpeed(0.25);  // Bardzo wolno
-// setVideoSpeed(0.5);   // Wolno (domyślne)
+// setVideoSpeed(0.5);   // Wolno (domyĹ›lne)
 // setVideoSpeed(1.0);   // Normalnie
-// toggleBackgroundVideo(); // Włącz/wyłącz
-// setVideoOpacity(0.5); // Zmień przezroczystość
-// togglePingPong();     // Włącz/wyłącz ping-pong effect
+// toggleBackgroundVideo(); // WĹ‚Ä…cz/wyĹ‚Ä…cz
+// setVideoOpacity(0.5); // ZmieĹ„ przezroczystoĹ›Ä‡
+// togglePingPong();     // WĹ‚Ä…cz/wyĹ‚Ä…cz ping-pong effect
 
 	// Attribution popup logic
 	$(document).on('click', '.attribution-icon', function(event) {
@@ -218,3 +232,8 @@
 			$('.attribution').removeClass('active');
 		}
 	});
+
+
+
+
+
