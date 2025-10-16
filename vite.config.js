@@ -23,6 +23,6 @@ export default defineConfig({
     },
   },
   server: {
-    open: '/index.html',
+    open: '/index_de.html',
   },
 });
