@@ -47,11 +47,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Check for saved language on page load; default to German (de)
+    const currentPage = window.location.pathname.split('/').pop();
     const savedLang = localStorage.getItem('language');
     if (savedLang) {
         redirectToLanguage(savedLang);
     } else {
-        setLanguage('de');
+        if (/_en\.html$/i.test(currentPage)) {
+            localStorage.setItem('language', 'en');
+        } else if (/_de\.html$/i.test(currentPage)) {
+            localStorage.setItem('language', 'de');
+        } else {
+            localStorage.setItem('language', 'pl');
+        }
     }
 
     // Add click listeners to language switcher links
